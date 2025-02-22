@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat App (Practice Project)
 
-## Getting Started
+This is a **real-time chat application** built using **Next.js**, **Clerk for authentication**, and **GetStream for messaging**. The app allows users to search for other users, start a chat, and view their recent conversations.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+✅ **User Authentication** – Managed with Clerk.  
+✅ **Real-time Messaging** – Powered by GetStream.  
+✅ **Search Users** – Find users to start a conversation.  
+✅ **Recent Chats** – Automatically displays users you've chatted with.  
+✅ **Profile Display** – Shows usernames, profile pictures, and last messages.  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🛠️ Tech Stack
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Next.js** (App Router)
+- **Clerk** (User Authentication)
+- **Stream Chat** (Real-time messaging)
+- **ShadCN UI** (UI components)
+- **Tailwind CSS** (Styling)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🔧 Setup & Installation
 
-## Learn More
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/chat-app.git
+   cd chat-app
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables:**
+   Create a `.env.local` file and add:
+   ```env
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   CLERK_SECRET_KEY=your_clerk_secret_key
+   NEXT_PUBLIC_API_KEY=your_stream_api_key
+   STREAM_SECRET=your_stream_secret
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Deploy on Vercel
+## 🎯 Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Sign in** using Clerk authentication.
+2. **Search for users** or view recent conversations.
+3. **Start chatting** in real-time using GetStream.
+4. **Click a user** from the recent chat list to continue the conversation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## 💡 Credits
+
+- [Next.js](https://nextjs.org/)
+- [Clerk](https://clerk.dev/)
+- [GetStream](https://getstream.io/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+🚀 **Built for practice by Priyam**
+
