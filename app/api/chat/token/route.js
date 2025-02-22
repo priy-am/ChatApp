@@ -5,7 +5,7 @@ const api_secret = process.env.API_SECRET;
 
 export async function GET(req) {
   try {
-    const { searchParams } = new URL(req.url, "http://localhost"); // Ensure valid URL
+    const { searchParams } = new URL(req.url, "https://chat-app-xi-rust.vercel.app/"); // Ensure valid URL
     const userId = searchParams.get("user_id");
 
     if (!userId) {
