@@ -1,5 +1,5 @@
 "use client";
-import { UserButton, SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import { UserButton, SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { isSignedIn, isLoaded } = useUser();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -77,7 +78,7 @@ export default function Navbar() {
 
           {/* Auth & Actions */}
           <div className="hidden md:flex items-center gap-4">
-            <SignedIn>
+            {isLoaded && isSignedIn && (
               <div className="p-0.5 rounded-full bg-slate-100 border border-slate-200">
                 <UserButton
                   appearance={{
@@ -87,22 +88,20 @@ export default function Navbar() {
                   }}
                 />
               </div>
-            </SignedIn>
-            <SignedOut>
+            )}
+            {isLoaded && !isSignedIn && (
               <SignInButton mode="modal">
                 <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm shadow-sm transition duration-200">
                   <span>Sign In</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </SignInButton>
-            </SignedOut>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-3">
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
+            {isLoaded && isSignedIn && <UserButton />}
             <button
               onClick={toggleMobileMenu}
               className="p-2 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-slate-900 focus:outline-none"
@@ -133,19 +132,20 @@ export default function Navbar() {
                 </Link>
               );
             })}
-            <SignedOut>
+            {isLoaded && !isSignedIn && (
               <SignInButton mode="modal">
                 <button className="w-full mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium text-base">
                   <span>Sign In</span>
                   <ArrowRight className="w-4 h-4" />
                 </button>
               </SignInButton>
-            </SignedOut>
+            )}
           </div>
         )}
       </div>
     </nav>
   );
 }
+
 
 
