@@ -1,34 +1,118 @@
-<svg
-  width="200"
-  height="200"
-  viewBox="0 0 200 200"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
-  <!-- Gradient Definition -->
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="bubbleGradient" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#00C9FF"/>
-      <stop offset="100%" stop-color="#B721FF"/>
+    {/* Main 3D Gradient */}
+    <linearGradient id="bubbleGrad" x1="120" y1="80" x2="420" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F355FF"/>
+      <stop offset="35%" stop-color="#A13BF7"/>
+      <stop offset="70%" stop-color="#3A7BD5"/>
+      <stop offset="100%" stop-color="#00D2FF"/>
     </linearGradient>
+
+    {/* Top Right Slice Gradient */}
+    <linearGradient id="sliceGrad" x1="280" y1="80" x2="420" y2="240" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF6BFC"/>
+      <stop offset="50%" stop-color="#C742FF"/>
+      <stop offset="100%" stop-color="#7B2CBF"/>
+    </linearGradient>
+
+    {/* Glossy Top Edge Highlight */}
+    <linearGradient id="glossOverlay" x1="256" y1="80" x2="256" y2="400" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.45"/>
+      <stop offset="30%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+      <stop offset="70%" stop-color="#000000" stop-opacity="0.0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.25"/>
+    </linearGradient>
+
+    {/* 3D Inner Bevel Highlight */}
+    <linearGradient id="bevelLight" x1="150" y1="100" x2="350" y2="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.0"/>
+    </linearGradient>
+
+    {/* Drop Shadow Filter */}
+    <filter id="softShadow" x="40" y="40" width="432" height="448" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#5B21B6" flood-opacity="0.35"/>
+    </filter>
   </defs>
 
-  <!-- Outer chat bubble -->
-  <path
-    d="M100 20C55.8 20 20 50.1 20 88C20 110.9 34.5 130.6 55.6 142L50 175L84 157.6C89.1 158.6 94.5 159 100 159C144.2 159 180 128.9 180 91C180 50.1 144.2 20 100 20Z"
-    fill="url(#bubbleGradient)"
-    stroke="#4A148C"
-    stroke-width="5"
-    stroke-linejoin="round"
-  />
+  <g filter="url(#softShadow)">
+    {/* 1. Main Chat Bubble Body (Pie base with gap for top-right slice) */}
+    <path
+      d="M 256 112
+         C 256 112 256 256 256 256
+         L 398 198
+         C 406 216 410 235 410 256
+         C 410 341 341 410 256 410
+         C 220 410 187 398 161 378
+         L 134 430
+         L 146 364
+         C 119 337 102 299 102 256
+         C 102 171 171 102 256 102
+         L 256 112 Z"
+      fill="url(#bubbleGrad)"
+    />
 
-  <!-- Pie chart container -->
-  <circle cx="100" cy="100" r="38" fill="white" stroke="#2E2E2E" stroke-width="3"/>
+    {/* Bubble Body 3D Gloss Layer */}
+    <path
+      d="M 256 112
+         C 256 112 256 256 256 256
+         L 398 198
+         C 406 216 410 235 410 256
+         C 410 341 341 410 256 410
+         C 220 410 187 398 161 378
+         L 134 430
+         L 146 364
+         C 119 337 102 299 102 256
+         C 102 171 171 102 256 102
+         L 256 112 Z"
+      fill="url(#glossOverlay)"
+    />
 
-  <!-- Pie chart sections -->
-  <path d="M100 100L130 110A30 30 0 0 0 100 70Z" fill="#FF4081"/>
-  <path d="M100 100L100 70A30 30 0 0 1 130 110Z" fill="#FFEA00"/>
-  <path d="M100 100L110 130A30 30 0 0 1 70 110Z" fill="#00E676"/>
-  <path d="M100 100L70 110A30 30 0 0 1 100 70Z" fill="#00B0FF"/>
+    {/* Inner Edge Bevel Light for Bubble Body */}
+    <path
+      d="M 256 104
+         C 172 104 104 172 104 256
+         C 104 298 121 335 148 362
+         L 138 420
+         L 163 372
+         C 189 391 221 402 256 402
+         C 337 402 402 337 402 256
+         C 402 236 398 218 390 201
+         L 264 252
+         L 264 112
+         C 261 107 259 104 256 104 Z"
+      stroke="url(#bevelLight)"
+      stroke-width="3"
+      fill="none"
+    />
 
+    {/* 2. Top-Right Detached Pie Slice */}
+    <path
+      d="M 272 96
+         C 320 98 363 122 392 159
+         L 272 236
+         V 96 Z"
+      fill="url(#sliceGrad)"
+    />
+
+    {/* Slice Gloss Layer */}
+    <path
+      d="M 272 96
+         C 320 98 363 122 392 159
+         L 272 236
+         V 96 Z"
+      fill="url(#glossOverlay)"
+    />
+
+    {/* Slice Bevel Light */}
+    <path
+      d="M 274 98
+         C 320 100 361 123 389 158
+         L 274 232
+         V 98 Z"
+      stroke="url(#bevelLight)"
+      stroke-width="2.5"
+      fill="none"
+    />
+  </g>
 </svg>
